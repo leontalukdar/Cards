@@ -28,12 +28,30 @@ namespace Cards
                 hands[i] = new Hand(cardSegments[i]);
             }
 
+            for (int i = 0; i < 4; i++)
+            {
+                Play.hands[i] = new Hand(cardSegments[i]);
+            }
+
+
+
             foreach (var hand in hands)
             {
                 Console.WriteLine("[ HAND ]");
                 Console.WriteLine(hand);
                 Console.WriteLine();
             }
+
+            //Creating players && starting Game.
+            Player[] players = new Player[4];
+
+            players[0] = new Player("First Player");
+            players[1] = new Player("Second Player");
+            players[2] = new Player("Third Player");
+            players[3] = new Player("Fourth Player");
+
+            Play play = new Play(players);
+            play.start();
 
             Console.ReadKey();
         }

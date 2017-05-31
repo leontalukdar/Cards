@@ -6,7 +6,7 @@ namespace Cards
 {
     public class Hand
     {
-        private HashSet<Card> cards = new HashSet<Card>();
+        public HashSet<Card> cards = new HashSet<Card>();
 
 
         public Hand() { }
@@ -71,7 +71,7 @@ namespace Cards
         
         public void Sort()
         {
-            var sortedCards = cards.Sort();
+            //var sortedCards = cards.Sort();
         }
 
 
