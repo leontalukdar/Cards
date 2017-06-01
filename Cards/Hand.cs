@@ -6,7 +6,7 @@ namespace Cards
 {
     public class Hand
     {
-        public HashSet<Card> cards = new HashSet<Card>();
+        private HashSet<Card> cards = new HashSet<Card>();
 
 
         public Hand() { }
@@ -85,6 +85,11 @@ namespace Cards
             }
 
             return str;
+        }
+
+        public void UpdatePlayerCards(Card card)
+        {
+            cards.Remove(card);
         }
     }
 }

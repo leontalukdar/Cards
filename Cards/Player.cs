@@ -21,19 +21,19 @@ namespace Cards
         {
             this.name = name;
         }
-        public Hand getHand()
+        public Hand GetHand()
         {
             return this.hand;
         }
 
         //update after playing each card
-        public void updateHand(Card card)
+        public void UpdateHand(Card card)
         {
-            this.getHand().cards.Remove(card);
+            this.GetHand().UpdatePlayerCards(card);
         }
 
         //set new hand after each round
-        public void setNewHand(Hand hand)
+        public void SetNewHand(Hand hand)
         {
             this.hand = hand;
         }

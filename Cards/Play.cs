@@ -9,9 +9,9 @@ namespace Cards
     class Play
     {
         public bool isPlaying { get; set; }
-        public Player[] players = new Player[4];
-        public static int roundNumber { get; set; }
-        List<Card> onDeck = new List<Card>();
+        private Player[] players = new Player[4];
+        private static int roundNumber { get; set; }
+        HashSet<Card> onDeck = new HashSet<Card>();
         public static Hand[] hands = new Hand[4];
 
 
@@ -29,12 +29,13 @@ namespace Cards
         }
 
         //Game Starts Here
-        public void start()
+        public void Start()
         {
             while (isPlaying)
             {
                 Console.WriteLine("Round Number : {0}", roundNumber);
-                setHands();
+                Program.Shuffle();
+                SetHands();
                 //TODO: Determine who will play first
                 for(int turns=0;turns<13;turns++)
                 {
@@ -43,18 +44,19 @@ namespace Cards
                     {
                         Console.WriteLine("{0}'s Hand", players[i].name);
                         Console.WriteLine(@"[ Cards ]");
-                        Console.WriteLine("{0}", players[i].getHand());
-                        Console.WriteLine("To play a card please enter : ");
+                        Console.WriteLine("{0}", players[i].GetHand());
+                        Console.WriteLine("{0}'s Turn:",players[i].name);
+                        Console.WriteLine("To play a card please enter: ");
                         Console.Write("Suit : ");
                         int x, y;
                         x = int.Parse(Console.ReadLine());
                         Console.Write("Number : ");
                         y = int.Parse(Console.ReadLine());
                         //Console.WriteLine("{0}",_pos);
-                        card = players[i].getHand().GetCard(x, y);
+                        card = players[i].GetHand().GetCard(x, y);
                         onDeck.Add(card);
                         Console.WriteLine(onDeck.ElementAt(i));
-                        players[i].updateHand(card);
+                        players[i].UpdateHand(card);
                     }
                     //TODO: Determine the pot winner and who will play first int next round
                     onDeck.Clear();
@@ -66,12 +68,12 @@ namespace Cards
 
         
         //call after each round
-        public void setHands()
+        public void SetHands()
         {
             int i = 0;
             foreach (Player player in players)
             {
-                player.setNewHand(hands[i]);
+                player.SetNewHand(hands[i]);
                 i++;
             }
         }

@@ -51,9 +51,29 @@ namespace Cards
             players[3] = new Player("Fourth Player");
 
             Play play = new Play(players);
-            play.start();
+            play.Start();
 
             Console.ReadKey();
         }
+
+        public static void Shuffle()
+        {
+            CardSet cardset = new CardSet();
+
+            for (int i = 0; i < 11; i++)
+            {
+                cardset.RiffleShuffle();
+            }
+
+
+            HashSet<Card>[] cardSegments = cardset.GetEqualSegments(4);
+            Hand[] hands = new Hand[4];
+
+            for (int i = 0; i < 4; i++)
+            {
+                Play.hands[i] = new Hand(cardSegments[i]);
+            }
+        }
+
     }
 }
